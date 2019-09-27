@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<properties resource="kr/co/mybatis/db.properties" />
 	<typeAliases>
 		<typeAlias type="kr.co.model.UserDto" alias="dto"/>
-		<typeAlias type="kr.co.model.UserForm" alias="form"/> <!-- 별명 -->
+		<typeAlias type="kr.co.controller.UserForm" alias="form"/> 
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">

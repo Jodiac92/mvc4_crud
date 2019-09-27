@@ -24,15 +24,15 @@ public class UserServlet extends HttpServlet {
 			int idx = ss.lastIndexOf('/');
 			StringTokenizer st = new StringTokenizer(ss.substring(idx + 1), ".");
 			ss = st.nextToken();
-			//System.out.println(ss); // /mvc4_crud/login.m2 => m2
+			//System.out.println(ss); // /mvc4_crud/login.m2 => login
 			String command = ss;
 			controller = getAction(command); //-->44로이동
 			modelAndView = controller.execute(request, response);
 			
-			//파일 호출 방식 선택 후 forwarding
-			if(modelAndView.isRedirect()) {
+			//파일 호출 방식 선택 후 처리 forwarding
+			if(modelAndView.isRedirect()) { //redirect
 				response.sendRedirect(modelAndView.getViewName());
-			} else {
+			} else { //forward
 				RequestDispatcher dispatcher = request.getRequestDispatcher(modelAndView.getViewName());
 				dispatcher.forward(request, response);
 			}
@@ -45,23 +45,29 @@ public class UserServlet extends HttpServlet {
 		if(command.equals("login")) {
 			controller = new LoginAction(); //-> 주소 넘겨 받고 리턴 29줄로감
 		}
-		/*
 		else if(command.equals("list")) {
+			controller = new ListAction();
 			
 		}else if(command.equals("logout")) {
+			controller = new LogoutAction();
 			
 		}else if(command.equals("insert")) {
+			controller = new InsertAction();
 			
 		}else if(command.equals("view")) {
+			controller = new ViewAction();
 			
 		}else if(command.equals("updateform")) {
+			controller = new UpdateFormAction();
 			
 		}else if(command.equals("update")) {
+			controller = new UpdateAction();
 			
 		}else if(command.equals("delete")) {
+			controller = new DeleteAction();
 			
 		}
-		*/
+		
 		return controller;
 	}
 
